@@ -822,9 +822,7 @@ local keyboard = {
 send_inline_key(msg.chat_id_,bl,keyboard)
 else
 if not database:get(bot_id..'Start:Time'..msg.sender_user_id_) then
-local inline = {{{text = "- اضغط لاضافتي ↯", switch_inline_query="للتفعيل ارفعني مشرف وارسل تفعيل في المجموعه ."},},
-{{text="- المطور ↯",url="t.me/"..(data.username_ or "TwiX")},{text="- شراء بوت ↯",url="t.me/Y_8ibot"},},}
-Namebot = (database:get(bot_id.."Name:Bot") or "تويكس")
+local inline = {{{text="- المطور ↯",url="t.me/"..(data.username_ or "TwiX")},},}
 local start = database:get(bot_id.."Start:Bot")  
 if start then 
 Text = start
