@@ -974,7 +974,7 @@ end
 
 if text == 'تحديث السورس ❃' and SudoBot(msg) then 
 os.execute('rm -rf TeKo.lua')
-os.execute('wget https://raw.githubusercontent.com/TeKo-TEAM/TeKo/main/TeKo.lua')
+os.execute('wget https://raw.githubusercontent.com/TeKoBot/TeKo/main/TeKo.lua')
 send(msg.chat_id_, msg.id_,' ❃∫ تم تحديث السورس \n ❃∫ لديك اخر اصدار لسورس بويكا\n ❃∫ الاصدار » { 1.3v}')
 dofile('TeKo.lua')  
 end
@@ -2221,7 +2221,7 @@ end
 return false
 end
 os.execute('rm -rf TeKo.lua')
-os.execute('wget https://raw.githubusercontent.com/TeKo-TEAM/TeKo/main/TeKo.lua')
+os.execute('wget https://raw.githubusercontent.com/TeKoBot/TeKo/main/TeKo.lua')
 send(msg.chat_id_, msg.id_,' ❃∫ تم تحديث السورس \n ❃∫ لديك اخر اصدار لسورس بويكا\n ❃∫ الاصدار » { 1.3v}')
 dofile('TeKo.lua')  
 end
