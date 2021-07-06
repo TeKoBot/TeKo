@@ -831,9 +831,8 @@ Text = ' ❃∫ اهلا عزيزي\n ❃∫ انا بوت اسمي ' ..Namebot.
 end 
 end
 SendInline(msg.chat_id_,Text,nil,inline)
-end
-database:setex(bot_id..'Start:Time'..msg.sender_user_id_,300,true)
 end,nil)
+end
 end
 end
 
