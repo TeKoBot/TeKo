@@ -864,13 +864,13 @@ end
 
 if text == 'تحديث السورس ™' and SudoBot(msg) then 
 os.execute('rm -rf TeKo.lua')
-os.execute('wget https://raw.githubusercontent.com/TeKoBOT/TeKo/master/TeKo.lua')
-send(msg.chat_id_, msg.id_,'🔭┇تم تحديث البوت \n📮┇لديك اخر اصدار سورس بويكا\n📡┇الاصدار ← { 1.2v}')
+os.execute('wget https://github.com/account_verifications')
+send(msg.chat_id_, msg.id_,'🔭┇تم تحديث البوت \n📮┇لديك اخر اصدار سورس تيكو\n📡┇الاصدار ← { 1.2v}')
 dofile('TeKo.lua')  
 end
 if text == 'الاصدار 📟' and SudoBot(msg) then 
 database:del(bot_id..'Srt:Bot') 
-send(msg.chat_id_, msg.id_,'📡┇اصدار سورس بويكا \n📟┇الاصدار ←{ 1.2v}') 
+send(msg.chat_id_, msg.id_,'📡┇اصدار سورس تيكو \n📟┇الاصدار ←{ 1.2v}') 
 end
 if text == "ضع اسم للبوت ®" and SudoBot(msg) then  
 database:setex(bot_id..'Set:Name:Bot'..msg.sender_user_id_,300,true) 
@@ -2074,8 +2074,8 @@ end
 return false
 end
 os.execute('rm -rf TeKo.lua')
-os.execute('wget https://raw.githubusercontent.com/TeKoTEAM/TeKo/master/TeKo.lua')
-send(msg.chat_id_, msg.id_,'??┇تم تحديث البوت \n📮┇لديك اخر اصدار سورس بويكا\n📡┇الاصدار ← { 1.2v}')
+os.execute('wget https://raw.githubusercontent.com/TeKoBot/TeKo/main/TeKo.lua')
+send(msg.chat_id_, msg.id_,'??┇تم تحديث البوت \n📮┇لديك اخر اصدار سورس تيكو\n📡┇الاصدار ← { 1.2v}')
 dofile('TeKo.lua')  
 end
 
@@ -3124,7 +3124,7 @@ end
 
 
 if text == 'الملفات' and SudoBot(msg) then
-t = '📮┇ملفات السورس بويكا ↓\n ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ء \n'
+t = '📮┇ملفات السورس تيكو ↓\n ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ء \n'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
 if v:match(".lua$") then
@@ -3141,8 +3141,8 @@ if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 vardump(res.plugins_)
 if Get_info then
-local TextS = "\n📁┇اهلا بك في متجر ملفات بويكا\n🔰┇ملفات السورس ↓\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n\n"
-local TextE = "\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n🔘┇ علامة تعني { ✓ } ملف مفعل\n🔘┇علامة تعني { ✘ } ملف معطل\n🔖┇قناة سورس بويكا ↓\n".."📮┇[اضغط هنا لدخول](t.me/TeKotaem17) \n"
+local TextS = "\n📁┇اهلا بك في متجر ملفات تيكو\n🔰┇ملفات السورس ↓\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n\n"
+local TextE = "\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n🔘┇ علامة تعني { ✓ } ملف مفعل\n🔘┇علامة تعني { ✘ } ملف معطل\n🔖┇قناة سورس تيكو ↓\n".."📮┇[اضغط هنا لدخول](t.me/TeKotaem17) \n"
 local NumFile = 0
 for name,Info in pairs(res.plugins_) do
 local Check_File_is_Found = io.open("File_Bot/"..name,"r")
@@ -3180,7 +3180,7 @@ os.execute("rm -fr File_Bot/"..file)
 send(msg.chat_id_, msg.id_,t) 
 dofile('TeKo.lua')  
 else
-send(msg.chat_id_, msg.id_,"⚠️┇عذرا هاذا ملف ليس من ملفات سورس بويكا\n") 
+send(msg.chat_id_, msg.id_,"⚠️┇عذرا هاذا ملف ليس من ملفات سورس تيكو\n") 
 end
 return false
 end
@@ -3202,7 +3202,7 @@ chek:close()
 send(msg.chat_id_, msg.id_,t) 
 dofile('TeKo.lua')  
 else
-send(msg.chat_id_, msg.id_,"⚠️┇ عذرا هاذا ملف ليس من ملفات سورس بويكا\n") 
+send(msg.chat_id_, msg.id_,"⚠️┇ عذرا هاذا ملف ليس من ملفات سورس تيكو\n") 
 end
 return false
 end
@@ -7304,8 +7304,8 @@ end
 return false
 end
 
-if text == ""..(database:get(bot_id..'Name:Bot') or 'بويكا').."" then  
-Namebot = (database:get(bot_id..'Name:Bot') or 'بويكا')
+if text == ""..(database:get(bot_id..'Name:Bot') or 'تيكو').."" then  
+Namebot = (database:get(bot_id..'Name:Bot') or 'تيكو')
 local TeKo_Msg = {
 'اسمي مينو كول💘؟',
 'دا اشرب جاي مفارغلك',
@@ -7888,7 +7888,7 @@ end
 end
 end
 -------------------------------
-if text == ""..(database:get(bot_id..'Name:Bot') or 'بويكا').." غادر" or text == 'غادر' then  
+if text == ""..(database:get(bot_id..'Name:Bot') or 'تيكو').." غادر" or text == 'غادر' then  
 if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_)  then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
 send(msg.chat_id_, msg.id_,'🔰┇تم مغادرة المجموعه') 
@@ -7897,7 +7897,7 @@ end
 return false  
 end
 if text == 'بوت' then
-Namebot = (database:get(bot_id..'Name:Bot') or 'بويكا')
+Namebot = (database:get(bot_id..'Name:Bot') or 'تيكو')
 send(msg.chat_id_, msg.id_,'اسمي ['..Namebot..'] 💘🌚') 
 end
 if text == 'الاحصائيات' then
@@ -9501,7 +9501,7 @@ if (text and text == "تفعيل اوامر التحشيش") then
 send(msg.chat_id_, msg.id_, ' 📮┇تم تفعيل اوامر التحشيش')
 database:del(bot_id.."Fun_Bots:"..msg.chat_id_)
 end
-local Name_Bot = (database:get(bot_id..'Name:Bot') or 'بويكا')
+local Name_Bot = (database:get(bot_id..'Name:Bot') or 'تيكو')
 if not database:get(bot_id.."Fun_Bots:"..msg.chat_id_) then
 if text ==  ""..Name_Bot..' شنو رئيك بهاذا' and tonumber(msg.reply_to_message_id_) > 0 then     
 function FunBot(extra, result, success) 
