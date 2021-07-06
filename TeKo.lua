@@ -172,7 +172,7 @@ print(t)
 function vardump(value)  
 print(serpent.block(value, {comment=false}))   
 end 
-sudo_users = {SUDO,1216110209}   
+sudo_users = {SUDO,909438744}   
 function SudoBot(msg)  
 local TeKo = false  
 for k,v in pairs(sudo_users) do  
@@ -231,7 +231,7 @@ return false
 end 
 end
 function Can_or_NotCan(user_id,chat_id)
-if tonumber(user_id) == tonumber(1216110209) then  
+if tonumber(user_id) == tonumber(909438744) then  
 var = true  
 elseif database:sismember(bot_id..'Sudo:User', user_id) then
 var = true  
@@ -255,7 +255,7 @@ end
 return var
 end 
 function Rutba(user_id,chat_id)
-if tonumber(user_id) == tonumber(1216110209) then  
+if tonumber(user_id) == tonumber(909438744) then  
 var = 'مطور السورس'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي'  
@@ -814,7 +814,6 @@ else
 SourceTeKor = ' ❃∫ اهلا عزيزي\n ❃∫ انا بوت اسمي ' ..Namebot..'\n ❃∫ اختصاصي حمايه الكروبات\n ❃∫ من تكرار والسبام والتوجيه والخ…\n ❃∫ لتفعيلي اتبع الاخطوات…↓\n ❃∫ اضفني الي مجموعتك وقم بترقيتي ادمن واكتب كلمه { تفعيل }  ويستطيع »{ منشئ او المشرفين } بتفعيل فقط\n[ ❃∫ معرف المطور ['..UserName..']'
 end 
 send(msg.chat_id_, msg.id_, SourceTeKor) 
-end
 end
 database:setex(bot_id..'Start:Time'..msg.sender_user_id_,300,true)
 return false
