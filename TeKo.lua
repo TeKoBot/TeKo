@@ -137,14 +137,14 @@ end
 _redis = load_redis()  
 --------------------------------------------------------------------------------------------------------------
 print([[
-┏┓━━━━━━━━━━━┏┓━━━━━━━━━
-┃┃━━━━━━━━━━━┃┃━━━━━━━━━
+┏┓≪━━━━━━𝘽𝙆━━━━━━≫━━━┏┓≪━━━━━━𝘽𝙆━━━━━━≫━
+┃┃≪━━━━━━𝘽𝙆━━━━━━≫━━━┃┃≪━━━━━━𝘽𝙆━━━━━━≫━
 ┃┗━┓┏━━┓┏┓━┏┓┃┃┏┓┏━━┓         
 ┃┏┓┃┃┏┓┃┃┃━┃┃┃┗┛┛┗━┓┃        
 ┃┗┛┃┃┗┛┃┃┗━┛┃┃┏┓┓┃┗┛┗┓  
 ┗━━┛┗━━┛┗━┓┏┛┗┛┗┛┗━━━┛ 
-━━━━━━━━┏━┛┃━━━━━━━━━━━━           
-━━━━━━━━┗━━┛━━━━━━━━━━━━
+≪━━━━━━𝘽𝙆━━━━━━≫┏━┛┃≪━━━━━━𝘽𝙆━━━━━━≫━━━━           
+≪━━━━━━𝘽𝙆━━━━━━≫┗━━┛≪━━━━━━𝘽𝙆━━━━━━≫━━━━
 > CH › @TeKo_MOD
 ~> DEVELOPER › @IIIIIX
 ]])
@@ -329,7 +329,26 @@ end
 end
 return var
 end
-
+function send(chat_id, reply_to_message_id, text)
+local text1 = database:get(bot_id..'TeKo:new:sourse1') or '≪━━━━━━𝘽𝙆━━━━━━≫'
+local text2 = database:get(bot_id..'TeKo:new:sourse2') or '•'
+text = string.gsub(text,"≪━━━━━━𝘽𝙆━━━━━━≫",text1)
+text = string.gsub(text,"•",text2)
+local TextParseMode = {ID = "TextParseModeMarkdown"}
+pcall(tdcli_function ({ID = "SendMessage",chat_id_ = chat_id,reply_to_message_id_ = reply_to_message_id,disable_notification_ = 1,from_background_ = 1,reply_markup_ = nil,input_message_content_ = {ID = "InputMessageText",text_ = text,disable_web_page_preview_ = 1,clear_draft_ = 0,entities_ = {},parse_mode_ = TextParseMode,},}, dl_cb, nil))
+end
+function send1(chat_id, reply_to_message_id, text)
+local text1 = database:get(bot_id..'TeKo:new:sourse1') or '≪━━━━━━𝘽𝙆━━━━━━≫'
+local text2 = database:get(bot_id..'TeKo:new:sourse2') or '•'
+text = string.gsub(text,"≪━━━━━━𝘽𝙆━━━━━━≫",text1)
+text = string.gsub(text,"•",text2)
+local TextParseMode = {ID = "TextParseModeMarkdown"}
+pcall(tdcli_function ({ID = "SendMessage",chat_id_ = chat_id,reply_to_message_id_ = reply_to_message_id,disable_notification_ = 1,from_background_ = 1,reply_markup_ = nil,input_message_content_ = {ID = "InputMessageText",text_ = text,disable_web_page_preview_ = 0,clear_draft_ = 0,entities_ = {},parse_mode_ = TextParseMode,},}, dl_cb, nil))
+end
+function send2(chat_id, reply_to_message_id, text)
+local TextParseMode = {ID = "TextParseModeMarkdown"}
+pcall(tdcli_function ({ID = "SendMessage",chat_id_ = chat_id,reply_to_message_id_ = reply_to_message_id,disable_notification_ = 1,from_background_ = 1,reply_markup_ = nil,input_message_content_ = {ID = "InputMessageText",text_ = text,disable_web_page_preview_ = 0,clear_draft_ = 0,entities_ = {},parse_mode_ = TextParseMode,},}, dl_cb, nil))
+end
 function dl_cb(a,d)
 end
 function getChatId(id)
@@ -404,21 +423,6 @@ end
 function send_inline_key(chat_id,text,keyboard,inline,reply_id) 
 local response = {} response.keyboard = keyboard response.inline_keyboard = inline response.resize_keyboard = true response.one_time_keyboard = false response.selective = false  local send_api = "https://api.telegram.org/bot"..token.."/sendMessage?chat_id="..chat_id.."&text="..URL.escape(text).."&parse_mode=Markdown&disable_web_page_preview=true&reply_markup="..URL.escape(JSON.encode(response)) if reply_id then send_api = send_api.."&reply_to_message_id="..reply_id end return s_api(send_api) 
 end
-
-function SendInline(chat_id,text,keyboard,inline,reply_id) 
-local response = {} 
-response.keyboard = keyboard 
-response.inline_keyboard = inline 
-response.resize_keyboard = true 
-response.one_time_keyboard = false 
-response.selective = false  
-local send_api = "https://api.telegram.org/bot"..token.."/sendMessage?chat_id="..chat_id.."&text="..URL.escape(text).."&parse_mode=Markdown&disable_web_page_preview=true&reply_markup="..URL.escape(JSON.encode(response)) 
-if reply_id then 
-send_api = send_api.."&reply_to_message_id="..reply_id 
-end 
-return s_api(send_api) 
-end
-
 local function GetInputFile(file)  
 local file = file or ""   if file:match('/') then  infile = {ID= "InputFileLocal", path_  = file}  elseif file:match('^%d+$') then  infile = {ID= "InputFileId", id_ = file}  else  infile = {ID= "InputFilePersistentId", persistent_id_ = file}  end return infile 
 end
@@ -518,7 +522,7 @@ promote = 'ꪜ'
 else
 promote = '✘'
 end
-Send(chat,msg.id_,'\n- الرتبة : مشرف  '..'\n- والصلاحيات هي ↓ \nٴ━━━━━━━━━━'..'\n- تغير معلومات الكروب ↞ ❴ '..info..' ❵'..'\n- حذف الرسائل ↞ ❴ '..delete..' ❵'..'\n- حظر المستخدمين ↞ ❴ '..restrict..' ❵'..'\n- دعوة مستخدمين ↞ ❴ '..invite..' ❵'..'\n- تثبيت الرسائل ↞ ❴ '..pin..' ❵'..'\n- اضافة مشرفين جدد ↞ ❴ '..promote..' ❵')   
+Send(chat,msg.id_,'\n- الرتبة : مشرف  '..'\n- والصلاحيات هي ↓ \nٴ≪━━━━━━𝘽𝙆━━━━━━≫━━'..'\n- تغير معلومات الكروب ↞ ❴ '..info..' ❵'..'\n- حذف الرسائل ↞ ❴ '..delete..' ❵'..'\n- حظر المستخدمين ↞ ❴ '..restrict..' ❵'..'\n- دعوة مستخدمين ↞ ❴ '..invite..' ❵'..'\n- تثبيت الرسائل ↞ ❴ '..pin..' ❵'..'\n- اضافة مشرفين جدد ↞ ❴ '..promote..' ❵')   
 end
 end
 end
@@ -822,20 +826,18 @@ local keyboard = {
 send_inline_key(msg.chat_id_,bl,keyboard)
 else
 if not database:get(bot_id..'Start:Time'..msg.sender_user_id_) then
-local inline = {{{text="- المطور ↯",url="t.me/"..(data.username_ or "TwiX")},},}
 local start = database:get(bot_id.."Start:Bot")  
 if start then 
-Text = start
+SourceTeKor = start
 else
-Text = ' ❃∫ اهلا عزيزي\n ❃∫ انا بوت اسمي ' ..Namebot..'\n ❃∫ اختصاصي حمايه الكروبات\n ❃∫ من تكرار والسبام والتوجيه والخ…\n ❃∫ لتفعيلي اتبع الاخطوات…↓\n ❃∫ اضفني الي مجموعتك وقم بترقيتي ادمن واكتب كلمه { تفعيل }  ويستطيع »{ منشئ او المشرفين } بتفعيل فقط\n❃∫ معرف المطور '
+SourceTeKor = ' ❃∫ اهلا عزيزي\n ❃∫ انا بوت اسمي ' ..Namebot..'\n ❃∫ اختصاصي حمايه الكروبات\n ❃∫ من تكرار والسبام والتوجيه والخ…\n ❃∫ لتفعيلي اتبع الاخطوات…↓\n ❃∫ اضفني الي مجموعتك وقم بترقيتي ادمن واكتب كلمه { تفعيل }  ويستطيع »{ منشئ او المشرفين } بتفعيل فقط\n❃∫ معرف المطور '
 end 
 end
-SendInline(msg.chat_id_,Text,nil,inline)
-end,nil)
+send(msg.chat_id_, msg.id_, SourceTeKor) 
 end
+database:setex(bot_id..'Start:Time'..msg.sender_user_id_,300,true)
+return false
 end
-end
-
 if not SudoBot(msg) and not database:sismember(bot_id..'Ban:User_Bot',msg.sender_user_id_) and not database:get(bot_id..'Tuasl:Bots') then
 send(msg.sender_user_id_, msg.id_,' ❃∫ تم ارسال رسالتك\n ❃∫ سيتم رد في اقرب وقت')
 tdcli_function ({ID = "ForwardMessages", chat_id_ = SUDO,    from_chat_id_ = msg.sender_user_id_,    message_ids_ = {[0] = msg.id_},    disable_notification_ = 1,    from_background_ = 1 },function(arg,data) 
@@ -7446,7 +7448,28 @@ local CHENGER_ID = text:match("(.*)")
 database:set(bot_id.."KLISH:ID"..msg.chat_id_,CHENGER_ID)
 send(msg.chat_id_, msg.id_,' ❃∫ تم تعين الايدي')    
 end
-
+if text == 'تغير شكل السورس' and SudoBot(msg) then
+database:set(bot_id..'TeKo:new:sourse'..msg.chat_id_..msg.sender_user_id_,'true1') 
+send2(msg.chat_id_, msg.id_, 'ارسل رمز بدلا عن هاذا \n ≪━━━━━━𝘽𝙆━━━━━━≫')
+return false
+end
+if database:get(bot_id..'TeKo:new:sourse'..msg.chat_id_..msg.sender_user_id_) == 'true1' then
+database:set(bot_id..'TeKo:new:sourse1',text)
+send2(msg.chat_id_, msg.id_, 'الان ارسل رمز بدلا عن • ')
+database:set(bot_id..'TeKo:new:sourse'..msg.chat_id_..msg.sender_user_id_,'true2') 
+return false
+end
+if database:get(bot_id..'TeKo:new:sourse'..msg.chat_id_..msg.sender_user_id_) == 'true2' then
+database:set(bot_id..'TeKo:new:sourse2',text)
+database:del(bot_id..'TeKo:new:sourse'..msg.chat_id_..msg.sender_user_id_) 
+send(msg.chat_id_, msg.id_, 'تم تغير شكل السورس')
+return false
+end
+if text == 'حذف شكل السورس' and SudoBot(msg) then
+database:del(bot_id..'TeKo:new:sourse1')
+database:del(bot_id..'TeKo:new:sourse2')
+send(msg.chat_id_, msg.id_, 'تم حظف تغير شكل السورس')
+end
 if text == 'طرد البوتات' and Mod(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -9574,7 +9597,7 @@ if Json_Info.result.can_restrict_members == true then
 restrict = 'ꪜ' else restrict = '✘' end
 if Json_Info.result.can_promote_members == true then
 promote = 'ꪜ' else promote = '✘' end 
-send(msg.chat_id_,msg.id_,'\n ❃∫ اهلا عزيزي البوت هنا ادمن'..'\n ❃∫ وصلاحياته هي ↓ \nٴ━━━━━━━━━━'..'\n ❃∫ تغير معلومات الكروب ↞ ❴ '..info..' ❵'..'\n ❃∫ حذف الرسائل ↞ ❴ '..delete..' ❵'..'\n ❃∫ حظر المستخدمين ↞ ❴ '..restrict..' ❵'..'\n ❃∫ دعوة مستخدمين ↞ ❴ '..invite..' ❵'..'\n ❃∫ تثبيت الرسائل ↞ ❴ '..pin..' ❵'..'\n ❃∫ اضافة مشرفين جدد ↞ ❴ '..promote..' ❵')   
+send(msg.chat_id_,msg.id_,'\n ❃∫ اهلا عزيزي البوت هنا ادمن'..'\n ❃∫ وصلاحياته هي ↓ \nٴ≪━━━━━━𝘽𝙆━━━━━━≫━━'..'\n ❃∫ تغير معلومات الكروب ↞ ❴ '..info..' ❵'..'\n ❃∫ حذف الرسائل ↞ ❴ '..delete..' ❵'..'\n ❃∫ حظر المستخدمين ↞ ❴ '..restrict..' ❵'..'\n ❃∫ دعوة مستخدمين ↞ ❴ '..invite..' ❵'..'\n ❃∫ تثبيت الرسائل ↞ ❴ '..pin..' ❵'..'\n ❃∫ اضافة مشرفين جدد ↞ ❴ '..promote..' ❵')   
 end
 end
 end
