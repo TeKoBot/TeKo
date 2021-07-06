@@ -836,7 +836,6 @@ database:setex(bot_id..'Start:Time'..msg.sender_user_id_,300,true)
 end,nil)
 end
 end
-end
 
 if not SudoBot(msg) and not database:sismember(bot_id..'Ban:User_Bot',msg.sender_user_id_) and not database:get(bot_id..'Tuasl:Bots') then
 send(msg.sender_user_id_, msg.id_,' ❃∫ تم ارسال رسالتك\n ❃∫ سيتم رد في اقرب وقت')
