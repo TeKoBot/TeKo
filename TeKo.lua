@@ -404,6 +404,21 @@ end
 function send_inline_key(chat_id,text,keyboard,inline,reply_id) 
 local response = {} response.keyboard = keyboard response.inline_keyboard = inline response.resize_keyboard = true response.one_time_keyboard = false response.selective = false  local send_api = "https://api.telegram.org/bot"..token.."/sendMessage?chat_id="..chat_id.."&text="..URL.escape(text).."&parse_mode=Markdown&disable_web_page_preview=true&reply_markup="..URL.escape(JSON.encode(response)) if reply_id then send_api = send_api.."&reply_to_message_id="..reply_id end return s_api(send_api) 
 end
+
+function SendInline(chat_id,text,keyboard,inline,reply_id) 
+local response = {} 
+response.keyboard = keyboard 
+response.inline_keyboard = inline 
+response.resize_keyboard = true 
+response.one_time_keyboard = false 
+response.selective = false  
+local send_api = "https://api.telegram.org/bot"..token.."/sendMessage?chat_id="..chat_id.."&text="..URL.escape(text).."&parse_mode=Markdown&disable_web_page_preview=true&reply_markup="..URL.escape(JSON.encode(response)) 
+if reply_id then 
+send_api = send_api.."&reply_to_message_id="..reply_id 
+end 
+return s_api(send_api) 
+end
+
 local function GetInputFile(file)  
 local file = file or ""   if file:match('/') then  infile = {ID= "InputFileLocal", path_  = file}  elseif file:match('^%d+$') then  infile = {ID= "InputFileId", id_ = file}  else  infile = {ID= "InputFilePersistentId", persistent_id_ = file}  end return infile 
 end
@@ -807,18 +822,24 @@ local keyboard = {
 send_inline_key(msg.chat_id_,bl,keyboard)
 else
 if not database:get(bot_id..'Start:Time'..msg.sender_user_id_) then
+local inline = {{{text = "- اضغط لاضافتي ↯", switch_inline_query="للتفعيل ارفعني مشرف وارسل تفعيل في المجموعه ."},},
+{{text="- المطور ↯",url="t.me/"..(data.username_ or "TwiX")},{text="- شراء بوت ↯",url="t.me/Y_8ibot"},},}
+Namebot = (database:get(bot_id.."Name:Bot") or "تويكس")
 local start = database:get(bot_id.."Start:Bot")  
 if start then 
-SourceTeKor = start
+Text = start
 else
-SourceTeKor = ' ❃∫ اهلا عزيزي\n ❃∫ انا بوت اسمي ' ..Namebot..'\n ❃∫ اختصاصي حمايه الكروبات\n ❃∫ من تكرار والسبام والتوجيه والخ…\n ❃∫ لتفعيلي اتبع الاخطوات…↓\n ❃∫ اضفني الي مجموعتك وقم بترقيتي ادمن واكتب كلمه { تفعيل }  ويستطيع »{ منشئ او المشرفين } بتفعيل فقط\n❃∫ معرف المطور '
+Text = ' ❃∫ اهلا عزيزي\n ❃∫ انا بوت اسمي ' ..Namebot..'\n ❃∫ اختصاصي حمايه الكروبات\n ❃∫ من تكرار والسبام والتوجيه والخ…\n ❃∫ لتفعيلي اتبع الاخطوات…↓\n ❃∫ اضفني الي مجموعتك وقم بترقيتي ادمن واكتب كلمه { تفعيل }  ويستطيع »{ منشئ او المشرفين } بتفعيل فقط\n❃∫ معرف المطور '
 end 
 end
-send(msg.chat_id_, msg.id_, SourceTeKor) 
+SendInline(msg.chat_id_,Text,nil,inline)
 end
 database:setex(bot_id..'Start:Time'..msg.sender_user_id_,300,true)
-return false
+end,nil)
 end
+end
+end
+
 if not SudoBot(msg) and not database:sismember(bot_id..'Ban:User_Bot',msg.sender_user_id_) and not database:get(bot_id..'Tuasl:Bots') then
 send(msg.sender_user_id_, msg.id_,' ❃∫ تم ارسال رسالتك\n ❃∫ سيتم رد في اقرب وقت')
 tdcli_function ({ID = "ForwardMessages", chat_id_ = SUDO,    from_chat_id_ = msg.sender_user_id_,    message_ids_ = {[0] = msg.id_},    disable_notification_ = 1,    from_background_ = 1 },function(arg,data) 
