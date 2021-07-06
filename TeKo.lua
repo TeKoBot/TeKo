@@ -813,8 +813,8 @@ SourceTeKor = start
 else
 SourceTeKor = ' ❃∫ اهلا عزيزي\n ❃∫ انا بوت اسمي ' ..Namebot..'\n ❃∫ اختصاصي حمايه الكروبات\n ❃∫ من تكرار والسبام والتوجيه والخ…\n ❃∫ لتفعيلي اتبع الاخطوات…↓\n ❃∫ اضفني الي مجموعتك وقم بترقيتي ادمن واكتب كلمه { تفعيل }  ويستطيع »{ منشئ او المشرفين } بتفعيل فقط\n[ ❃∫ معرف المطور ['..UserName..']'
 end 
-send(msg.chat_id_, msg.id_, SourceTeKor) 
 end
+send(msg.chat_id_, msg.id_, SourceTeKor) 
 end
 database:setex(bot_id..'Start:Time'..msg.sender_user_id_,300,true)
 return false
