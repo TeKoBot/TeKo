@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-cd $HOME/DEV-NAG
+cd $HOME/TEKOBOT
 install() {
 rm -rf $HOME/.telegram-cli
 sudo chmod +x tg
-chmod +x NiggA
-chmod +x NG
-./NG
+chmod +x TeKo
+chmod +x TK
+./TK
 }
 installall(){
 apt update
